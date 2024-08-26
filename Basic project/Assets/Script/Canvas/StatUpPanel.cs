@@ -84,8 +84,11 @@ public class StatUpPanel : MonoBehaviour, PanelController
          
         CharacterNameText.text = character.job;
 
-        hpStatText.text = "Current HP : " + character.GetUpgradeHP();
-        attackStatText.text = "Current Attack : " + character.GetUpgradeAttack();
+        //hpStatText.text = "Current HP : " + character.GetUpgradeHP();
+        //attackStatText.text = "Current Attack : " + character.GetUpgradeAttack();
+
+        hpStatText.text = character.GetUpgradeHP().ToString();
+        attackStatText.text = character.GetUpgradeAttack().ToString();
 
         currentHPUpgradeLevel = character._hpUpgradeLevel;
         currentAttackUpgradeLevel = character._attackUpgradeLevel;

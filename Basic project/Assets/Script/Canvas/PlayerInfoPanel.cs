@@ -16,7 +16,7 @@ public class PlayerInfoPanel : MonoBehaviour, PanelController
     }
 
     public void ChangeCoinText(int coin){
-        coinText.text = "Coin : " + coin.ToString();
+        coinText.text = coin.ToString();
     }
 
     public void ChangeKillMonsterCountText(int num){
