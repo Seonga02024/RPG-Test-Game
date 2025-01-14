@@ -21,6 +21,7 @@ public class StagePanel : MonoBehaviour, PanelController
     public void ClickOffBtn(){
         mainPanel.SetActive(false);
         GameManager.Instance.StageStart();
+        //GameManager.Instance.ChangeState(GameManager.Instance.BattleState);
     }
     
     public void ChangeStageText(int stage){

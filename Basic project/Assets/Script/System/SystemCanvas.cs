@@ -9,6 +9,7 @@ public class SystemCanvas : SingleTon<SystemCanvas>
     [SerializeField] private TitlePanel titlePanel;
     [SerializeField] private StagePanel stagePanel;
     [SerializeField] private SettingPanel settingPanel;
+    [SerializeField] private StoryPanel storyPanel;
 
     private List<PanelController> panelControllers;
 
@@ -20,6 +21,7 @@ public class SystemCanvas : SingleTon<SystemCanvas>
         panelControllers.Add(titlePanel.GetComponent<PanelController>());
         panelControllers.Add(stagePanel.GetComponent<PanelController>());
         panelControllers.Add(settingPanel.GetComponent<PanelController>());
+        panelControllers.Add(storyPanel.GetComponent<PanelController>());
     }
 
     public PlayerInfoPanel GetPlayerInfoPanel(){
@@ -40,6 +42,10 @@ public class SystemCanvas : SingleTon<SystemCanvas>
 
     public SettingPanel GetSettingPanel(){
         return settingPanel;
+    }
+
+    public StoryPanel GetStoryPanel(){
+        return storyPanel;
     }
 
     public void OnAllPanel(bool isActive)
