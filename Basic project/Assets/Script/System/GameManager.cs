@@ -39,7 +39,12 @@ public class StoryState : IGameState
     public void EnterState(GameManager gameManager)
     {
         Debug.Log("Entering Story State");
-        SystemCanvas.Instance.GetStoryPanel().OnPanel(true);
+        if(gameManager.currentStage == 7 || gameManager.currentStage == 15 || gameManager.currentStage == 25){
+            SystemCanvas.Instance.GetStoryPanel().OnPanel(true);
+            SystemCanvas.Instance.GetStoryPanel().ShowStory(gameManager.currentStage);
+        }else{
+            gameManager.ChangeState(gameManager.BattleState);
+        }
     }
 
     public void UpdateState(GameManager gameManager)
@@ -85,7 +90,7 @@ public class GameManager : SingleTon<GameManager>
 
         InitGame();
         // Set initial state to StoryState
-        ChangeState(StoryState);
+        //ChangeState(StoryState);
     }
 
     private void Update()

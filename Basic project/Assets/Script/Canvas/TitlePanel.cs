@@ -13,7 +13,8 @@ public class TitlePanel : MonoBehaviour, PanelController
 
     public void ClickGameStartBtn(){
         mainPanel.SetActive(false);
-        GameManager.Instance.ShowStageInfo();
+        //GameManager.Instance.ShowStageInfo();
+        GameManager.Instance.ChangeState(GameManager.Instance.StoryState);
     }
 
     public void ClickBackBtn(){
