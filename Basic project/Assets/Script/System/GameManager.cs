@@ -18,7 +18,6 @@ public class BattleState : IGameState
     {
         Debug.Log("Entering Battle State");
         gameManager.ShowStageInfo();
-        //gameManager.StageStart();
     }
 
     public void UpdateState(GameManager gameManager)
@@ -153,9 +152,9 @@ public class GameManager : SingleTon<GameManager>
         charactersController = FindObjectOfType<CharactersController>();
         monstersController = FindObjectOfType<MonstersController>();
         charactersController.InstantiateCharacters();
-        CreateMonsters();
-        SettingCameraFollowObj(charactersController.characters[0].transform);
-        SettingGameData();
+        // CreateMonsters();
+        // SettingCameraFollowObj(charactersController.characters[0].transform);
+        // SettingGameData();
     }
 
     private void SettingGameData()
@@ -170,6 +169,10 @@ public class GameManager : SingleTon<GameManager>
 
     private void SettingStage()
     {
+        CreateMonsters();
+        SettingCameraFollowObj(charactersController.characters[0].transform);
+        SettingGameData();
+
         charactersController.SettingStageCharacters();
         monstersController.SettingStageMonster(currentStage);
     }

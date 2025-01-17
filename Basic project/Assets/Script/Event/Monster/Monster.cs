@@ -201,7 +201,7 @@ public class Monster : MonoBehaviour
 
     private void TrackCharacter()
     {
-        if(GameManager.Instance.charactersController.characters.Length > 0){
+        if(GameManager.Instance.charactersController.characters.Count > 0){
             foreach (var character in GameManager.Instance.charactersController.characters)
             {
                 if(character.isAlive){

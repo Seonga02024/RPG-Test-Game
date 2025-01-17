@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     [HideInInspector] public float _skillAttckCoolTime;
 
     /* Values*/
+    [HideInInspector] public int id;
     [HideInInspector] public string job;
     [HideInInspector] public int level = 1;
     [HideInInspector] public float exp = 0;
@@ -121,14 +122,14 @@ public class Character : MonoBehaviour
     {
         _hpUpgradeLevel = num;
         // save data
-        SaveLoadManager.Instance.SetCharacterInfoHpUpgradeLevel(job, _hpUpgradeLevel);
+        SaveLoadManager.Instance.SetCharacterInfoHpUpgradeLevel(id, _hpUpgradeLevel);
     }
 
     public void UpgradeAttackLevel(int num)
     {
         _attackUpgradeLevel = num;
         // save data
-        SaveLoadManager.Instance.SetCharacterInfoAttackUpgradeLevel(job, _attackUpgradeLevel);
+        SaveLoadManager.Instance.SetCharacterInfoAttackUpgradeLevel(id, _attackUpgradeLevel);
     }
 
     public void GetEXP(float value){
@@ -227,7 +228,7 @@ public class Character : MonoBehaviour
             _characterInfoPanel.DamgeEXP(100);
             _characterInfoPanel.ChangeLVText(level);
             // save data
-            SaveLoadManager.Instance.SetCharacterInfoLevel(job, level);
+            SaveLoadManager.Instance.SetCharacterInfoLevel(id, level);
             // play sfx
             GameSoundManager.Instance.SfxPlay(SFX.LevelUp);
         }

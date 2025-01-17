@@ -13,7 +13,8 @@ public class CharactersController : MonoBehaviour
     [Header("[charater slot points]")]
     [SerializeField] private Transform[] slotPoints; 
 
-    public Character[] characters; // current charaters
+    //public Character[] characters; // current charaters
+    public List<Character> characters = new List<Character>(); // current charaters
 
     /////////////////////////////////////////////////////////////////////////////////
     ///
@@ -30,7 +31,9 @@ public class CharactersController : MonoBehaviour
 
     public void SettingCharactersData(){
         foreach(Character character in characters){
-            CharacterInfo charactersInfo = SaveLoadManager.Instance.GetCharacterInfo(character.job);
+            Debug.Log(character.id);
+            CharacterInfo charactersInfo = SaveLoadManager.Instance.GetCharacterInfo(character.id);
+            character.id = charactersInfo.characterID;
             character.level = charactersInfo.Level;
             character._hpUpgradeLevel = charactersInfo.HpUpgradeLevel;
             character._attackUpgradeLevel = charactersInfo.AttackUpgradeLevel;
@@ -39,7 +42,7 @@ public class CharactersController : MonoBehaviour
 
     public void InstantiateCharacters()
     {
-        characters = new Character[4];
+        // characters = new Character[4];
 
         // test code
         // characters = new Character[2];
@@ -49,10 +52,33 @@ public class CharactersController : MonoBehaviour
         //characters[0] = InstantiateCharacter(thiefPrefab, "Thief", 3);
 
         // Instantiate and initialize characters
-        characters[0] = InstantiateCharacter(knightPrefab, "Knight", 0);
-        characters[1] = InstantiateCharacter(thiefPrefab, "Thief", 1); 
-        characters[2] = InstantiateCharacter(archerPrefab, "Archer", 2);
-        characters[3] = InstantiateCharacter(priestPrefab, "Priest", 3);
+        // characters[0] = InstantiateCharacter(knightPrefab, "Knight", 0);
+        // characters[1] = InstantiateCharacter(thiefPrefab, "Thief", 1); 
+        // characters[2] = InstantiateCharacter(archerPrefab, "Archer", 2);
+        // characters[3] = InstantiateCharacter(priestPrefab, "Priest", 3);
+
+        for (int i = 0; i < 4; i++){
+            CharacterInfo charactersInfo = SaveLoadManager.Instance.GetCharacterInfo(i);
+            Character character;
+            if(charactersInfo.Job == "Knight"){
+                character = InstantiateCharacter(knightPrefab, "Knight", i);
+                characters.Add(character);
+            }
+            else if(charactersInfo.Job == "Thief"){
+                character = InstantiateCharacter(thiefPrefab, "Thief", i); 
+                characters.Add(character);
+            }
+            else if(charactersInfo.Job == "Archer"){
+                character = InstantiateCharacter(archerPrefab, "Archer", i);
+                characters.Add(character);
+            }
+            else if(charactersInfo.Job == "Priest"){
+                character = InstantiateCharacter(priestPrefab, "Priest", i);
+                characters.Add(character);
+            }
+        }
+
+        Debug.Log("characters.Count : " + characters.Count);
     }
 
     public void CheckAllCharacterDie(){
@@ -79,6 +105,7 @@ public class CharactersController : MonoBehaviour
         character.SetPosition(slotPoints[index].position);
         character.Init();
         character.job = job;
+        character.id = index;
         return character;
     }
 }

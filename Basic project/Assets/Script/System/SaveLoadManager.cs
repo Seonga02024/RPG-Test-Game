@@ -7,7 +7,10 @@ using System;
 [System.Serializable]
 public class CharacterInfo
 {
-    public string Job = "";
+    public int characterID = -1;
+    public bool isUse = false;
+    public bool isBuy = false;
+    public string Job = "None";
     public int Level = 1;
     public int HpUpgradeLevel = 0;
     public int AttackUpgradeLevel = 0;
@@ -24,7 +27,8 @@ public class GameData
     public float sfxSound;
     public int playCount;
     public List<CharacterInfo> charactersInfo;
-    private string[] jobList = {"Knight", "Thief", "Archer", "Priest"};
+    //private string[] jobList = {"Knight", "Thief", "Archer", "Priest"};
+
 
     public GameData()
     {
@@ -39,7 +43,8 @@ public class GameData
         // 4개의 캐릭터
         charactersInfo = new List<CharacterInfo>();
         for (int i = 0; i < 4; i++){
-            charactersInfo.Add(new CharacterInfo{ Job = jobList[i] });
+            //charactersInfo.Add(new CharacterInfo{ Job = jobList[i] });
+            charactersInfo.Add(new CharacterInfo{ characterID = i });
         }
     }
 }
@@ -66,7 +71,7 @@ public class SaveLoadManager : SingleTon<SaveLoadManager>
     private void Start() 
     {
         savePath = Path.Combine(Application.persistentDataPath, "GameData.json");
-        //Debug.Log(Application.persistentDataPath);
+        Debug.Log(Application.persistentDataPath);
     }
 
     private GameData LoadData()
@@ -108,13 +113,26 @@ public class SaveLoadManager : SingleTon<SaveLoadManager>
     public void SetPlayCount(int value) { GameData.playCount = value; } 
     public int GetPlayCount() { return GameData.playCount; } 
 
-    public CharacterInfo GetCharacterInfo(string jobName) { return FindCharacterInfo(jobName); } 
-    public void SetCharacterInfoLevel(string jobName, int value) { FindCharacterInfo(jobName).Level = value; }
-    public void SetCharacterInfoHpUpgradeLevel(string jobName, int value) { FindCharacterInfo(jobName).HpUpgradeLevel = value; }
-    public void SetCharacterInfoAttackUpgradeLevel(string jobName, int value) { FindCharacterInfo(jobName).AttackUpgradeLevel = value; }
-    private CharacterInfo FindCharacterInfo(string jobName){
+    // public CharacterInfo GetCharacterInfo(string jobName) { return FindCharacterInfo(jobName); } 
+    // public void SetCharacterInfoLevel(string jobName, int value) { FindCharacterInfo(jobName).Level = value; }
+    // public void SetCharacterInfoHpUpgradeLevel(string jobName, int value) { FindCharacterInfo(jobName).HpUpgradeLevel = value; }
+    // public void SetCharacterInfoAttackUpgradeLevel(string jobName, int value) { FindCharacterInfo(jobName).AttackUpgradeLevel = value; }
+    // private CharacterInfo FindCharacterInfo(string jobName){
+    //     foreach( CharacterInfo characterInfo in GameData.charactersInfo){
+    //         if(characterInfo.Job == jobName){
+    //             return characterInfo;
+    //         }
+    //     }
+    //     return null;
+    // }
+
+    public CharacterInfo GetCharacterInfo(int characterID) { return FindCharacterInfo(characterID); } 
+    public void SetCharacterInfoLevel(int characterID, int value) { FindCharacterInfo(characterID).Level = value; }
+    public void SetCharacterInfoHpUpgradeLevel(int characterID, int value) { FindCharacterInfo(characterID).HpUpgradeLevel = value; }
+    public void SetCharacterInfoAttackUpgradeLevel(int characterID, int value) { FindCharacterInfo(characterID).AttackUpgradeLevel = value; }
+    private CharacterInfo FindCharacterInfo(int characterID){
         foreach( CharacterInfo characterInfo in GameData.charactersInfo){
-            if(characterInfo.Job == jobName){
+            if(characterInfo.characterID == characterID){
                 return characterInfo;
             }
         }

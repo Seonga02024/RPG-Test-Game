@@ -56,7 +56,7 @@ public class Priest : Character
         Character needHealCharacter = null;
         float currentHealCharacterHP = float.MaxValue;
 
-        if(GameManager.Instance.charactersController.characters.Length > 0){
+        if(GameManager.Instance.charactersController.characters.Count > 0){
             foreach (var character in GameManager.Instance.charactersController.characters)
             {
                 if(character.isAlive){

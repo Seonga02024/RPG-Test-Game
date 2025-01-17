@@ -34,7 +34,7 @@ public class StatUpPanel : MonoBehaviour, PanelController
     }
 
     public void SelectCharacter(int num){
-        if(GameManager.Instance.charactersController.characters.Length <= num) return;
+        if(GameManager.Instance.charactersController.characters.Count <= num) return;
 
         // setting select character data
         SettingUpgradeCharacterPanel(GameManager.Instance.charactersController.characters[num]);

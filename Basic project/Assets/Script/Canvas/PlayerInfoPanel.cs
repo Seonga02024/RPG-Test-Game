@@ -30,7 +30,7 @@ public class PlayerInfoPanel : MonoBehaviour, PanelController
     }
 
     public void ClickChangeCameraFollowObjBtn(int num){
-        if(GameManager.Instance.charactersController.characters.Length <= num) return;
+        if(GameManager.Instance.charactersController.characters.Count <= num) return;
         GameManager.Instance.SettingCameraFollowObj(GameManager.Instance.charactersController.characters[num].transform);
     }
 
